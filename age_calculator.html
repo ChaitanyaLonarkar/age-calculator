@@ -1,0 +1,157 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Day Calculator</title>
+  <style type="text/css" media="all">
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+    body{
+      background-color: #1a1535;
+      color: white;
+    }
+    .container{
+      width: 300px;
+      height:200px;
+      border: 1px solid #9C79d5;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      margin: 40px auto;
+      background-color: #302a4e;
+    }
+    h1{
+      display: flex;
+       justify-content: center;
+       align-items: center;
+       margin-top: 20px;
+    }
+    .columns{
+        display: flex;
+       justify-content: center;
+       align-items: center;
+      
+        margin: 10px;
+    }
+      
+    .column {
+      width: 25%;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+    
+    input {
+      width: 70px;
+      height: 23px;
+      margin-top: 4px;
+      border: 1px solid #9C79d5;
+      border-radius: 2px;
+      padding: 4px;
+      
+    }
+    
+    input:focus{
+      outline: none;
+    }
+    
+    .btn{
+     display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+    
+    .btn #sbmit{
+      width: 100px;
+      padding: 5px;
+     /* background-color: #9C79d5;
+      background-color: #d077ab;
+     background-color:right #d077ab #9C79d5;*/
+      background-image: linear-gradient(to bottom right, #d077ab, #9C79d5);
+      color:white;
+      border:none;
+      border-radius: 4px;
+      margin: 10px;
+    }
+    
+    #result{
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      letter-spacing: 0.5px;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+    
+    <div>
+       <h1>Age Calculator</h1>
+    </div>
+    
+   <div class="columns">
+    <div class="column">
+      <label for="date">Date</label>
+      <input type="number" max="31"  id="date" placeholder="DD" required=""/> 
+    </div> 
+  
+    <div class="column">
+      <label for="month">Month</label>
+      <input type="number" max="12"  id="month" placeholder="MM" required/>
+    </div>
+    
+    <div class="column">
+      <label for="year">Year</label>
+      <input type="number"  id="year" placeholder="YYYY" required=""/>
+    </div>
+    </div>
+    <div class="btn">
+    <button type="submit" id="sbmit" onclick="res()">Submit</button>
+    </div>
+  </div>
+  <div id="result">
+    
+  </div>
+  
+</body>
+<script type="text/javascript" charset="utf-8">
+   
+  function res(){
+    
+    let d1=document.getElementById("date").value;
+    let m1=document.getElementById("month").value;
+    let y1=document.getElementById("year").value;
+    
+    let date = new Date();
+    let d2 = date.getDate();
+    let m2 = date.getMonth()+1;
+    let y2 = date.getFullYear();
+    let month = [31, 28, 31, 30, 31, 30, 31, 31,30, 31,30, 31];
+    
+    if (d1 > d2) { 
+        d2 = d2 + month[m2 - 1];
+        m2 = m2 - 1;
+    }
+
+    if (m1 > m2) {
+      m2 = m2 + 12; 
+      y2 = y2 - 1;
+    }
+
+    let d = d2 - d1; 
+    let m = m2 - m1;
+    let y = y2 - y1;
+    
+    if(d1<=31 && m1<=12 && y1<y2) {
+      
+    document.getElementById("result").innerHTML = `Your Age is ${y} Years, ${m} Months and ${d} Days.`;
+    }
+    else{
+      window.alert("Enter valid date");
+    }
+  }
+</script>
+</html>
